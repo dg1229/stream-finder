@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+import Nav from './components/Nav';
+import Search from './components/Search';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 function App() {
   const [word, setWord] = React.useState('software');
@@ -12,25 +15,12 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Word Associations!</h1>
-      <input value={word} onChange={e => setWord(e.target.value)} />
-      <button onClick={getAssociations}>Search</button>
-
-      {associations && (
-        associations.length === 0
-          ? <p>No results</p>
-          : <div>
-             <p>Results! length = {associations.length}</p>
-             {associations.map((association,index) => (
-              <span key={index} style={{ fontSize: Math.pow(association.weight, 2) / 100 }}>
-                {association.item}
-                {' '}
-              </span>
-            ))}
-          </div>
-      )}
-    </div>
+    <Router>      
+      <Nav />
+      <Route path='/' exact render={(props) => (
+        <Search />
+      )} />
+    </Router>
   );
 }
 

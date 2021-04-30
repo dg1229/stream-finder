@@ -2,14 +2,15 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
 const unirest = require("unirest");
-const API_KEY = "a9fc482f-07c4-4454-8f36-8d7b57864def";
+const API_KEY = "AIzaSyAZRdOzsVe4vHOFdJ5R03TGq_1xddI6fAk";
 
-app.get('/api/associations/:word', (req, res) => {
+app.get('/api/streams/:word', (req, res) => {
 	const word = req.params.word;
-	const request = unirest.get(`https://api.wordassociations.net/associations/v1.0/json/search?apikey=${API_KEY}&lang=en&text=${word}`)
+	const request = unirest.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&eventType=live&maxResults=25&q=${word}&type=video&key=${API_KEY}`)
 	.then(response => {
-		const results = response.body.response[0].items || []; // grab array of results
-		console.log(`Num results=${results.length}`);
+		const results = response.body.items || []; // grab array of results
+		console.log(results);
+		//console.log(`Num results=${results.length}`);
 		res.json(results);
 	})
 	.catch(error => {
@@ -19,7 +20,7 @@ app.get('/api/associations/:word', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`word-app listening on port ${port}`);
+  console.log(`stream-finder listening on port ${port}`);
 });
 
 // import path library
