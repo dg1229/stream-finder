@@ -3,6 +3,7 @@ import { Card, Button, Form, Alert } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
+//Code source: https://www.youtube.com/watch?v=PKwu15ldZ7k
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -27,7 +28,7 @@ export default function Login() {
     }
 
     return (
-    <span  className="w-100" style={{ maxWidth: "400px" }}>
+    <span className="w-100" style={{ maxWidth: "400px" }}>
         <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">Log In</h2>

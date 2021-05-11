@@ -3,6 +3,7 @@ import { Card, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
+//Code source: https://www.youtube.com/watch?v=PKwu15ldZ7k
 export default function Dashboard() {
     const [error, setError] = useState("")
     const { currentUser, logout } = useAuth()
@@ -27,6 +28,9 @@ export default function Dashboard() {
                     <strong>Email:</strong> {currentUser.email}
                     <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
                         Update Profile
+                    </Link>
+                    <Link to="/search" className="btn btn-primary w-100 mt-3">
+                        Find Streams
                     </Link>
                 </Card.Body>
             </Card>

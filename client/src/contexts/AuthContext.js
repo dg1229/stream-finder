@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase'
+import firebase from'firebase/app';
 
+//Code source: https://www.youtube.com/watch?v=PKwu15ldZ7k
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -35,6 +37,12 @@ export function AuthProvider({ children }) {
         return auth.sendPasswordResetEmail(email)
     }
 
+    function addFavorite(channelTitle, id) {
+        return firebase.database.ref('users/' + currentUser.uid).set({
+            id: channelTitle
+        })
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -51,7 +59,8 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+        addFavorite
     }
     return (
         <AuthContext.Provider value={value}>
