@@ -32,7 +32,7 @@ export default function Signup() {
     }
 
     return (
-    <>
+    <span className="w-100" style={{ maxWidth: "400px" }}>
         <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">Sign Up</h2>
@@ -57,6 +57,6 @@ export default function Signup() {
         <div className ="w-100 text-center mt-2">
             Already have an Account? <Link to="/login">Log In</Link>
         </div>
-    </>
+    </span>
     )
 }

@@ -27,7 +27,7 @@ export default function ForgotPassword() {
     }
 
     return (
-    <>
+    <span className="w-100" style={{ maxWidth: "400px" }}>
         <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">Reset Password</h2>
@@ -48,6 +48,6 @@ export default function ForgotPassword() {
         <div className ="w-100 text-center mt-2">
             Need an Account? <Link to="/signup">Sign Up</Link>
         </div>
-    </>
+    </span>
     )
 }

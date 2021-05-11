@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Nav from './components/Nav';
+import PermHeader from './components/PermHeader';
 import Search from './components/Search';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Signup from './components/User/Signup';
@@ -24,26 +24,26 @@ function App() {
   };
 
   return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-      >
-        <Nav fixed="top" />
-        <div className="w-100" style={{ maxWidth: "400px" }}>
-          <Router>
-            <AuthProvider>
-              <Switch>
-                <PrivateRoute exact path="/" component={Dashboard} />
-                <PrivateRoute path="/update-profile" component={UpdateProfile} />
-                <Route path="/search" component={Search} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/login" component={Login} />
-                <Route path="/forgot-password" component={ForgotPassword} />
-              </Switch>
-            </AuthProvider>
-          </Router>
-        </div>
-      </Container>
+    <div className="h-100">
+      <PermHeader class="row"/>
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+        >
+            <Router>
+              <AuthProvider>
+                <Switch>
+                  <PrivateRoute exact path="/" component={Dashboard} />
+                  <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                  <Route path="/search" component={Search} />
+                  <Route path="/signup" component={Signup} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/forgot-password" component={ForgotPassword} />
+                </Switch>
+              </AuthProvider>
+            </Router>
+        </Container>
+      </div>
   );
 }
 
