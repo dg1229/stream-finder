@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Signup from './components/User/Signup';
 import { Container } from 'react-bootstrap'
 import { AuthProvider } from './contexts/AuthContext';
-import { auth } from './firebase';
 import Dashboard from './components/User/Dashboard'
 import Login from './components/User/Login'
 import PrivateRoute from "./components/PrivateRoute"

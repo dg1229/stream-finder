@@ -8,8 +8,7 @@ const Search = () => {
     fetch('/api/streams/' + word)
     .then(result => result.json())
     .then(body => {
-      setStreams(body);
-      this.setState({streams: []});
+      setStreams(body)
     })
     .catch(error => console.log(error))
   };
@@ -17,7 +16,7 @@ const Search = () => {
     return (
         <div className="app">
             <h2>Search for a YouTube livestream, view your current favorites, or manually add a favorite channel!</h2>
-            <input value={word} type="text" onChange={e => setWord(e.target.value)} />
+            <input className="w-100" value={word} type="text" onChange={e => setWord(e.target.value)} />
             <button onClick={getStreams}>Search</button>
             {streams && (
               streams.length === 0

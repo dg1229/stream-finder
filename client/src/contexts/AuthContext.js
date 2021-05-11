@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { auth } from '../firebase'
+import { auth, database } from '../firebase'
 import firebase from'firebase/app';
 
 //Code source: https://www.youtube.com/watch?v=PKwu15ldZ7k
@@ -36,12 +36,24 @@ export function AuthProvider({ children }) {
     function resetPassword(email) {
         return auth.sendPasswordResetEmail(email)
     }
+    
+    function writeUserData(userId, channelTitle, channelId) {
+        return database.ref('users/' + userId).push({
+            channelTitle, channelId
+        });
+    }
 
-    // function addFavorite(channelTitle, id) {
-    //     return firebase.database.ref('users/' + currentUser.uid).set({
-    //         id: channelTitle
-    //     })
-    // }
+    function getUserData(userId) {
+        return database.ref().child("users").child(userId).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                return Object.values(snapshot.val())
+            } else {
+                return "No data available"
+            }
+            }).catch((error) => {
+            console.error(error);
+            });
+    }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -59,7 +71,9 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+        writeUserData,
+        getUserData
     }
     return (
         <AuthContext.Provider value={value}>
