@@ -37,11 +37,11 @@ export function AuthProvider({ children }) {
         return auth.sendPasswordResetEmail(email)
     }
 
-    function addFavorite(channelTitle, id) {
-        return firebase.database.ref('users/' + currentUser.uid).set({
-            id: channelTitle
-        })
-    }
+    // function addFavorite(channelTitle, id) {
+    //     return firebase.database.ref('users/' + currentUser.uid).set({
+    //         id: channelTitle
+    //     })
+    // }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -59,8 +59,7 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword,
-        addFavorite
+        updatePassword
     }
     return (
         <AuthContext.Provider value={value}>
