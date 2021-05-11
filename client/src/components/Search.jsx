@@ -9,7 +9,6 @@ const Search = () => {
     .then(result => result.json())
     .then(body => {
       setStreams(body);
-      this.setState({streams: []});
     })
     .catch(error => console.log(error))
   };
