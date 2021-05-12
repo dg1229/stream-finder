@@ -11,6 +11,7 @@ export default function ForgotPassword() {
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false);
 
+    //Send email to reset user's password
     async function handleSubmit(e){
         e.preventDefault()
 

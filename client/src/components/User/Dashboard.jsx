@@ -13,6 +13,7 @@ export default function Dashboard() {
     const [mystreams, setmystreams] = useState(null)
     const history = useHistory()
 
+    //Get the favorited streams of the current user.
     useEffect(() => {
         const ref = database.ref('users/' + currentUser.uid)
 
@@ -25,8 +26,9 @@ export default function Dashboard() {
         return () => ref.off()
     }, [currentUser.uid])
 
-    console.log(`mystreams: ${mystreams}`)
+    //console.log(`mystreams: ${mystreams}`)
 
+    //Log current user out and return to login page
     async function handleLogout() {
         setError('')
         try {
@@ -37,6 +39,7 @@ export default function Dashboard() {
         }
     }
 
+    //Clear current user's favorite channels/streams
     async function handleReset() {
         clearFavorites(currentUser.uid)
     }

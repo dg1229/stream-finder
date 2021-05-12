@@ -3,12 +3,14 @@ import { Card, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 
+//Use for channels not yet favorited.
 const Channel = ({ title, id, channelTitle}) => {
     const { writeUserData, currentUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    //Add channel to current user's favorites
     async function handleSubmit(e){
         e.preventDefault()
 
@@ -36,6 +38,7 @@ const Channel = ({ title, id, channelTitle}) => {
     )
 }
 
+//Use for channels already favorited.
 const FavoriteChannel = ({ id, channelTitle}) => {
     const { writeUserData, currentUser } = useAuth()
 

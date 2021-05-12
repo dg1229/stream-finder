@@ -13,10 +13,11 @@ export default function UpdateProfile() {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    //Update current user's email and or password.
     function handleSubmit(e){
         e.preventDefault()
         
-
+        //Confirm entered passwords match
         if(passwordRef.current.value !== passwordConfirmRef.current.value){
             return setError('Passwords do not match')
         }
@@ -25,14 +26,17 @@ export default function UpdateProfile() {
         setLoading(true)
         setError("")
 
+        //Update email only if user has a different one entered.
         if(emailRef.current.value !== currentUser.email){
             promises.push(updateEmail(emailRef.current.value))
         }
 
+        //Update password if user has entered new password.
         if(passwordRef.current.value) {
             promises.push(updatePassword(passwordRef.current.value))
         }
 
+        //Update all specified user info.
         Promise.all(promises).then(() => {
             history.push('/')
         }).catch(() => {

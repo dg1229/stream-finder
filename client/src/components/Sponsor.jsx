@@ -12,6 +12,7 @@ export default function Sponsor() {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    //Update current sponsor with inputed information
     async function handleSubmit(e){
         e.preventDefault()
 

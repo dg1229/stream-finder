@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 
 //Code source: https://www.youtube.com/watch?v=PKwu15ldZ7k
+//Used to route user if authenitcated.
 export default function PrivateRoute({ component: Component, ...rest }) {
     const { currentUser } = useAuth()
     

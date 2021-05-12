@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 
 //Starter code for navbar sourced from https://react-bootstrap.github.io/components/navbar/
+//Permanent navbar across the site.
 export default function PermHeader() {
   return (
     <>

@@ -3,8 +3,10 @@ import Channel from './Channel'
 import Banner from './Banner'
 
 const Search = () => {
-  const [word, setWord] = React.useState('software');
+  const [word, setWord] = React.useState('Gaming');
   const [streams, setStreams] = React.useState(null);
+  
+  //Get streams from YouTube api
   const getStreams = () => {
     fetch('/api/streams/' + word)
     .then(result => result.json())

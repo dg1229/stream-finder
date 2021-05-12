@@ -6,6 +6,7 @@ import { database } from '../firebase'
 export default function Banner() {
     const [sponsored, setSponsored] = useState(null)
 
+    //Get current sponsor
     useEffect(() => {
         const ref = database.ref('sponsored/')
 
