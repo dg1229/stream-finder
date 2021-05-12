@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { auth, database } from '../firebase'
-import firebase from'firebase/app';
 
 //Code source: https://www.youtube.com/watch?v=PKwu15ldZ7k
 const AuthContext = React.createContext()
@@ -43,6 +42,17 @@ export function AuthProvider({ children }) {
         });
     }
 
+    function changeSponsor(title, id) {
+        return database.ref('sponsored/').set({
+            channelTitle: title,
+            channelId: id
+        })
+    }
+
+    function clearFavorites(userId){
+        database.ref(`users/` + userId).remove()
+    }
+
     function getUserData(userId) {
         return database.ref().child("users").child(userId).get().then((snapshot) => {
             if (snapshot.exists()) {
@@ -73,7 +83,9 @@ export function AuthProvider({ children }) {
         updateEmail,
         updatePassword,
         writeUserData,
-        getUserData
+        getUserData,
+        changeSponsor,
+        clearFavorites
     }
     return (
         <AuthContext.Provider value={value}>

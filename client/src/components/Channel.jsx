@@ -17,7 +17,7 @@ const Channel = ({ title, id, channelTitle}) => {
             setLoading(true)
             await writeUserData(currentUser.uid, channelTitle, id)
         } catch {
-            setError('Failed to favorte channel')
+            setError('Failed to favorite channel')
         }
 
         setLoading(false)

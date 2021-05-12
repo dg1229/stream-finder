@@ -9,15 +9,17 @@ import { Favorite } from '../Channel'
 //Code source: https://www.youtube.com/watch?v=PKwu15ldZ7k
 export default function Dashboard() {
     const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth()
-    const [mystreams, setmystreams] = useState(null);
+    const { currentUser, logout, clearFavorites } = useAuth()
+    const [mystreams, setmystreams] = useState(null)
     const history = useHistory()
 
     useEffect(() => {
         const ref = database.ref('users/' + currentUser.uid)
 
         ref.on("value", (snapshot) => {
-            setmystreams(Object.values(snapshot.val()))
+            if(snapshot.val()){
+                setmystreams(Object.values(snapshot.val()))
+            }
         })
 
         return () => ref.off()
@@ -33,6 +35,10 @@ export default function Dashboard() {
         } catch {
             setError("Failed to log out")
         }
+    }
+
+    async function handleReset() {
+        clearFavorites(currentUser.uid)
     }
 
     return (
@@ -56,12 +62,14 @@ export default function Dashboard() {
            <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Your Favorite Channels</h2>
+                    <Button className="w-100" variant="link" onClick={handleReset}>Clear Favorites</Button>
+
                     {!mystreams
                         ? <p>No results</p>
                         : <div>
                             {mystreams.map((stream,index) => (
                             <span key={index}>
-                                <Favorite title="temp" id={stream.channelId} channelTitle={stream.channelTitle} />
+                                <Favorite id={stream.channelId} channelTitle={stream.channelTitle} />
                             </span>
                             ))}
                         </div>

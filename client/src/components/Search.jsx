@@ -1,5 +1,6 @@
 import React from 'react'
 import Channel from './Channel'
+import Banner from './Banner'
 
 const Search = () => {
   const [word, setWord] = React.useState('software');
@@ -15,6 +16,7 @@ const Search = () => {
 
     return (
         <div className="app">
+            <Banner />
             <h2>Search for a YouTube livestream, view your current favorites, or manually add a favorite channel!</h2>
             <input className="w-100" value={word} type="text" onChange={e => setWord(e.target.value)} />
             <button onClick={getStreams}>Search</button>

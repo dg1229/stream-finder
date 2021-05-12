@@ -11,6 +11,8 @@ import Login from './components/User/Login'
 import PrivateRoute from "./components/PrivateRoute"
 import ForgotPassword from "./components/User/ForgotPassword"
 import UpdateProfile from './components/User/UpdateProfile'
+import NotFound from './components/NotFound'
+import Sponsor from './components/Sponsor'
 
 function App() {
   const [word, setWord] = React.useState('software');
@@ -26,7 +28,7 @@ function App() {
     <div className="h-100">
       <PermHeader class="row"/>
       <Container
-        className="d-flex align-items-center justify-content-center"
+        className="d-flex w-100 align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}
         >
             <Router>
@@ -37,7 +39,9 @@ function App() {
                   <Route path="/search" component={Search} />
                   <Route path="/signup" component={Signup} />
                   <Route path="/login" component={Login} />
+                  <Route path="/sponsor" component={Sponsor} />
                   <Route path="/forgot-password" component={ForgotPassword} />
+                  <Route component={NotFound} />
                 </Switch>
               </AuthProvider>
             </Router>
