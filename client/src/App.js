@@ -26,9 +26,9 @@ function App() {
 
   return (
     <div className="h-100">
-      <PermHeader class="row"/>
+      <PermHeader />
       <Container
-        className="d-flex w-100 align-items-center justify-content-center"
+        className="w-100 align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}
         >
             <Router>
