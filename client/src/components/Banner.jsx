@@ -6,7 +6,6 @@ import { useAuth } from '../contexts/AuthContext'
 //Starter code for navbar sourced from https://react-bootstrap.github.io/components/navbar/
 export default function Banner() {
     const [sponsored, setSponsored] = useState(null)
-    const { currentUser } = useAuth()
 
     useEffect(() => {
         const ref = database.ref('sponsored/')
@@ -16,7 +15,7 @@ export default function Banner() {
         })
 
         return () => ref.off()
-    }, [currentUser.uid])
+    }, [])
 
     if(!sponsored) return <></>
   return (
