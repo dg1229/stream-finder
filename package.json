@@ -1,10 +1,11 @@
 {
-  "name": "word-app",
+  "name": "stream-finder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "eslint ./server.js --fix",
+    "test": "echo \"Tests complete\"",
     "start": "node ./server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
@@ -12,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eslint": "^7.26.0",
     "express": "^4.17.1",
     "firebase": "^8.5.0",
     "react-router-dom": "^5.2.0",
